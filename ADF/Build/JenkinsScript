@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+    
+    triggers {
+        tags('*.*.*') // Trigger a build when a branch gets tagged with a version number (e.g., v1.0.0)
+    }
+    
+    environment {
+        NODE_VERSION = '10.x'
+        NPM_WORKING_DIR = "${env.WORKSPACE}/Build" // Folder containing the "package.json" config file
+    }
+    
+    stages {
+        stage('Install Node.js') {
+            steps {
+                script {
+                    tools {
+                        nodejs "${NODE_VERSION}"
+                    }
+                }
+            }
+        }
+        
+        stage('Install npm package') {
+            steps {
+                script {
+                    sh "npm install --prefix ${NPM_WORKING_DIR}"
+                }
+            }
+        }
+        
+        stage('Validate All') {
+            steps {
+                script {
+                    sh "npm run build validate ${NPM_WORKING_DIR}/ADF ${adfResourceId}"
+                }
+            }
+        }
+        
+        stage('Publish (Generate ARM Templates)') {
+            steps {
+                script {
+                    sh "npm run build export ${NPM_WORKING_DIR}/ADF ${adfResourceId} Artifact/AdfArmTemplate"
+                }
+            }
+        }
+        
+        stage('Copy PowerShell Scripts') {
+            steps {
+                script {
+                    sh "cp ${NPM_WORKING_DIR}/Scripts/*.ps1 ${NPM_WORKING_DIR}/Artifact/Scripts/"
+                }
+            }
+        }
+        
+        stage('Copy Environment Parameters (ARM Templates)') {
+            steps {
+                script {
+                    sh "cp ${NPM_WORKING_DIR}/EnvironmentParameters/*.json ${NPM_WORKING_DIR}/Artifact/EnvironmentParameters/"
+                }
+            }
+        }
+        
+        stage('Build Artifact') {
+            steps {
+                script {
+                    archiveArtifacts "${NPM_WORKING_DIR}/Artifact"
+                }
+            }
+        }
+    }
+}
