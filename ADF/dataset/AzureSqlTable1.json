@@ -25,6 +25,10 @@
 			{
 				"name": "designation",
 				"type": "varchar"
+			},
+			{
+				"name": "dateofjoining",
+				"type": "date"
 			}
 		],
 		"typeProperties": {
