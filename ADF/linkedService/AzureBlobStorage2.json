@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
-			"connectionString": "DefaultEndpointsProtocol=https;AccountName=blobstoragetestaastha;AccountKey=QLlYG3uiKFje+2M1/XkxDoQX4wWpJxLVTIUyyG8iXT7QtGnDgTVBP7OhLhrzzK3UHS8bfOWvnc36+AStxWA6dw==;EndpointSuffix=core.windows.net;"
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=blobstoragetestaastha;AccountKey=QLlYG3uiKFje+2M1/XkxDoQX4wWpJxLVTIUyyG8iXT7QtGnDgTVBP7OhLhrzzK3UHS8bfOWvnc36+AStxWA6dw==;"
 		}
 	}
 }
