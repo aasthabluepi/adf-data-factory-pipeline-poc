@@ -1,0 +1,9 @@
+{
+	"name": "test-data-factory-aastha",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "519f9e6d-78cc-4ac3-a3b4-befceef76991",
+		"tenantId": "7fb62e72-210d-4dc3-9740-280ec1b5c9f8"
+	}
+}
