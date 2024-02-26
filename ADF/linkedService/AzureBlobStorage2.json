@@ -1,5 +1,6 @@
 {
-    "name": "AzureBlobStorageLinkedService",
+    "name": "AzureBlobStorage2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
     "properties": {
         "type": "AzureBlobStorage",
         "typeProperties": {
